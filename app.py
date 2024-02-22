@@ -33,11 +33,3 @@ app = create_app()
 @app.shell_context_processor
 def make_shell_context():
     return dict(db=db, Receta=Receta)
-    
-def git_pull():
-    subprocess.run(["git", "pull"])
-
-if __name__ == "__main__":
-    while True:
-        git_pull()
-        time.sleep(10)
