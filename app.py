@@ -7,6 +7,9 @@ from models.receta import Receta#eliminar
 from models.proyecto import Proyecto
 from resources.recursosReceta import RecetaListResource, RecetaResource, RecetaPublishResource, ProyectoListResource, ProyectoResource, ProyectoPublishResource
 
+import subprocess
+import time
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -30,3 +33,11 @@ app = create_app()
 @app.shell_context_processor
 def make_shell_context():
     return dict(db=db, Receta=Receta)
+    
+def git_pull():
+    subprocess.run(["git", "pull"])
+
+if __name__ == "__main__":
+    while True:
+        git_pull()
+        time.sleep(10)
