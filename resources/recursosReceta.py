@@ -60,7 +60,7 @@ class ProyectoResource(Resource):
 class ProyectoPublishResource(Resource):
 	def delete(self, proyecto_id):
 		proyecto = Proyecto.get_by_id(proyecto_id)
-		if receta is None:
+		if proyecto is None:
 			return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
 		db.session.delete(proyecto)
 		db.session.commit()
