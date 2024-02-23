@@ -25,6 +25,7 @@ def register_resource(app):
     api = Api(app)
     api.add_resource(ProyectoListResource, '/projects')
     api.add_resource(ProyectoResource, '/projects/<int:proyecto_id>')#REVISAR ESTO MÁS TARDE
+    api.add_resource(ProyectoPublishResource, '/projects/<int:proyecto_id>')
     api.add_resource(RecetaListResource, '/smilecook')#eliminar
     api.add_resource(RecetaResource, '/smilecook/<int:receta_id>')#eliminar
     api.add_resource(RecetaPublishResource, '/smilecook/<int:receta_id>/publish')#eliminar
