@@ -3,6 +3,7 @@ from flask_restful import Resource
 from http import HTTPStatus
 from models.receta import Receta#ELIMINAR
 from models.proyecto import Proyecto
+from extensiones import db
 #import json OPCION PARA TENER TILDES
 
 #PARTE A MODIFICAR
