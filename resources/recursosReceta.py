@@ -33,7 +33,7 @@ class ProyectoListResource(Resource):
         )
 
         proyecto.guardar()
-        return proyecto.data, HTTPStatus.CREATED
+        return proyecto.getId(), HTTPStatus.CREATED
 
 class ProyectoResource(Resource):
 	#DEVUELVE UN PROYECTO
@@ -68,6 +68,7 @@ class ProyectoPublishResource(Resource):
 		#DEBERIA ELIMINAR EL PASO DE MESSAGE?????
 		return {'message': 'Proyecto eliminado'}, HTTPStatus.OK
    
+
 #ELIMINAR MÁS ADELANTE
 class RecetaListResource(Resource):
     def get(self):

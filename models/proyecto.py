@@ -22,6 +22,8 @@ class Proyecto(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def getId(self):
+        return self.id
 
     @property
     def data(self):
