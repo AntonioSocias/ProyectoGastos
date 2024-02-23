@@ -20,7 +20,7 @@ class ProyectoListResource(Resource):
     def post(self):
         datos = request.get_json()
         titulo_proyecto = datos.get('titulo')
-        if Proyecto.get_by_titulo(nombre_proyecto):
+        if Proyecto.get_by_titulo(titulo_proyecto):
             return {'message': 'Ya existe un proyecto con ese nombre.'}, HTTPStatus.BAD_REQUEST
 
         proyecto = Proyecto(
