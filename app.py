@@ -26,12 +26,12 @@ def register_extensions(app):
 
 def register_resource(app):
     api = Api(app)
-    api.add_resource(ProyectoListResource, '/projects')#devuelve una lista de proyectos
-    api.add_resource(ProyectoResource, '/projects/<int:proyecto_id>')#crea un proyecto
-    api.add_resource(ProyectoPublishResource, '/projects/<int:proyecto_id>')#eliminar un proyecto 
-    api.add_resource(GastoListResource, '/projects')#devuelve una lista de gastos
-    api.add_resource(GastoResource, '/projects/<int:gasto_id>')#crea un gasto
-    api.add_resource(GastoPublishResource, '/projects/<int:gasto_id>')#eliminar un gasto 
+    api.add_resource(ProyectoListResource, '/proyectos')#devuelve una lista de proyectos
+    api.add_resource(ProyectoResource, '/proyectos/<int:proyecto_id>')#crea un proyecto
+    api.add_resource(ProyectoPublishResource, '/proyectos/<int:proyecto_id>')#eliminar un proyecto 
+    api.add_resource(GastoListResource, '/gastos')#devuelve una lista de gastos
+    api.add_resource(GastoResource, '/gastos/<int:gasto_id>')#crea un gasto
+    api.add_resource(GastoPublishResource, '/gastos/<int:gasto_id>')#eliminar un gasto 
 app = create_app()
 
 #REVISAR QUE HACE ESTO 
