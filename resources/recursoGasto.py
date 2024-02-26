@@ -52,14 +52,14 @@ class GastoResource(Resource):
         gasto.cantidad = datos.get('cantidad')
         gasto.fecha = datos.get('fecha')
         gasto.guardar()
-        #AL ACABAR DEVUELVO EL PROYECTO/QUIZAS NO TENGA QUE HACERLO
+        #AL ACABAR DEVUELVO EL GASTO/QUIZAS NO TENGA QUE HACERLO
         return gasto.data, HTTPStatus.OK
 
 class GastoPublishResource(Resource):
 	def delete(self, gasto_id):
 		gasto = Gasto.get_by_id(gasto_id)
 		if gasto is None:
-			return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+			return {'message': 'Gasto no encontrada'}, HTTPStatus.NOT_FOUND
 		db.session.delete(gasto)
 		db.session.commit()
 		#DEBERIA ELIMINAR EL PASO DE MESSAGE?????
