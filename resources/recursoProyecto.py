@@ -57,14 +57,22 @@ class ProyectoResource(Resource):
         proyecto.guardar()
         #AL ACABAR DEVUELVO EL PROYECTO/QUIZAS NO TENGA QUE HACERLO
         return proyecto.data, HTTPStatus.OK
-
+    
+    def delete(self, proyecto_id):
+        proyecto = Proyecto.get_by_id(proyecto_id)
+        if proyecto is None:
+            return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+        db.session.delete(proyecto)
+        db.session.commit()
+        #DEBERIA ELIMINAR EL PASO DE MESSAGE?????
+        return {'message': 'Proyecto eliminado'}, HTTPStatus.OK
+    
 class ProyectoPublishResource(Resource):
-	def delete(self, proyecto_id):
+	def get(self, proyecto_id):
 		proyecto = Proyecto.get_by_id(proyecto_id)
 		if proyecto is None:
 			return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
-		db.session.delete(proyecto)
-		db.session.commit()
+		
 		#DEBERIA ELIMINAR EL PASO DE MESSAGE?????
 		return {'message': 'Proyecto eliminado'}, HTTPStatus.OK
    
