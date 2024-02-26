@@ -3,12 +3,15 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from config import Config
 from extensiones import db
-from models.receta import Receta#eliminar
-from models.proyecto import Proyecto
-from resources.recursosReceta import RecetaListResource, RecetaResource, RecetaPublishResource, ProyectoListResource, ProyectoResource, ProyectoPublishResource
 
-import subprocess
-import time
+#IMPORTACIÓN DE MODELOS
+from models.proyecto import Proyecto
+from models.gasto import Gasto
+from models.receta import Receta
+#IMPORTACIÓN DE RECURSOS
+from resources.recursoProyecto import ProyectoListResource, ProyectoResource, ProyectoPublishResource
+from resources.recursoGasto import GastoListResource, GastoResource, GastoPublishResource
+
 
 def create_app():
     app = Flask(__name__)
@@ -26,11 +29,12 @@ def register_resource(app):
     api.add_resource(ProyectoListResource, '/projects')#devuelve una lista de proyectos
     api.add_resource(ProyectoResource, '/projects/<int:proyecto_id>')#crea un proyecto
     api.add_resource(ProyectoPublishResource, '/projects/<int:proyecto_id>')#eliminar un proyecto 
-    api.add_resource(RecetaListResource, '/smilecook')#eliminar
-    api.add_resource(RecetaResource, '/smilecook/<int:receta_id>')#eliminar
-    api.add_resource(RecetaPublishResource, '/smilecook/<int:receta_id>/publish')#eliminar
-
+    api.add_resource(GastoListResource, '/projects')#devuelve una lista de gastos
+    api.add_resource(GastoResource, '/projects/<int:gasto_id>')#crea un gasto
+    api.add_resource(GastoPublishResource, '/projects/<int:gasto_id>')#eliminar un gasto 
 app = create_app()
+
+#REVISAR QUE HACE ESTO 
 @app.shell_context_processor
 def make_shell_context():
     return dict(db=db, Receta=Receta)
