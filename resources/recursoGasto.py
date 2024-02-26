@@ -25,8 +25,9 @@ class GastoListResource(Resource):
         gasto = Gasto(
         	#id se genera automáticamente
             fecha=datos.get('fecha'),
-            pagado=datos.get('pagado'),
+            pagador=datos.get('pagador'),
             cantidad=datos.get('cantidad'),
+            proyecto = datos.get('proyecto'),
             titulo=titulo_gasto
         )
 
@@ -48,9 +49,10 @@ class GastoResource(Resource):
             return {'message': 'Gasto no encontrada'}, HTTPStatus.NOT_FOUND
         datos = request.get_json()
         gasto.titulo = datos.get('titulo')
-        gasto.pagado = datos.get('pagado')
+        gasto.pagador = datos.get('pagador')
         gasto.cantidad = datos.get('cantidad')
         gasto.fecha = datos.get('fecha')
+        gasto.proyecto = datos.get('proyecto')
         gasto.guardar()
         #AL ACABAR DEVUELVO EL GASTO/QUIZAS NO TENGA QUE HACERLO
         return gasto.data, HTTPStatus.OK

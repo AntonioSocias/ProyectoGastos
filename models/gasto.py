@@ -30,8 +30,11 @@ class Gasto(db.Model):
         return {
             'id': self.id,
             'titulo': self.titulo,
+            'cantidad': float(self.cantidad),
+            #CONVIERO EL DATE A TEXTO YA QUE JSON NO ADMITE DATE
+            'fecha': self.fecha.isoformat(),
+            'proyecto' : self.proyecto,
             'pagador': self.pagador,
             #casteo a float ya que JSON no funciona con Decimal
-            'cantidad': float(self.cantidad),
-            'fecah': self.fecha
+            
         }
