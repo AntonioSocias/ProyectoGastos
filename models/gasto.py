@@ -34,7 +34,5 @@ class Gasto(db.Model):
             #CONVIERO EL DATE A TEXTO YA QUE JSON NO ADMITE DATE
             'fecha': self.fecha.isoformat(),
             'proyecto' : self.proyecto,
-            'pagador': self.pagador,
-            #casteo a float ya que JSON no funciona con Decimal
-            
+            'pagador': self.pagador,           
         }
