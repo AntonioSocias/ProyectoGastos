@@ -7,10 +7,12 @@ from extensiones import db
 #IMPORTACIÓN DE MODELOS
 from models.proyecto import Proyecto
 from models.gasto import Gasto
-from models.receta import Receta
+from models.usuario import Usuario
+
 #IMPORTACIÓN DE RECURSOS
 from resources.recursoProyecto import ProyectoListResource, ProyectoResource, ProyectoPublishResource
 from resources.recursoGasto import GastoListResource, GastoResource
+from resources.recursoUsuario import UsuarioListResource, UsuarioResource
 
 
 def create_app():
@@ -27,10 +29,12 @@ def register_extensions(app):
 def register_resource(app):
     api = Api(app)
     api.add_resource(ProyectoListResource, '/proyectos')#devuelve una lista de proyectos
-    api.add_resource(ProyectoResource, '/proyectos/<int:proyecto_id>')#crea y elimina un proyecto 
+    api.add_resource(ProyectoResource, '/proyectos/<int:proyecto_id>')#crea, actualiza y elimina un proyecto 
     api.add_resource(ProyectoPublishResource, '/proyectos/<int:proyecto_id>/gastos')#devuelve lista de gastos del proyecto 
     api.add_resource(GastoListResource, '/gastos')#devuelve una lista de gastos
-    api.add_resource(GastoResource, '/gastos/<int:gasto_id>')#crea un gasto
+    api.add_resource(GastoResource, '/gastos/<int:gasto_id>')#crea, actualiza o elimina un gasto
+    api.add_resource(UsuarioListResource, '/usuarios')#devuelve una lista de usuarios
+    api.add_resource(UsuarioResource, '/usuarios/<int:usuario_id>')#crea, actualiza o elimina un usuario
 app = create_app()
 
 #REVISAR QUE HACE ESTO 
