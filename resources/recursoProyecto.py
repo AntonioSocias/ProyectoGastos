@@ -63,6 +63,11 @@ class ProyectoResource(Resource):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
             return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+        
+        lista_gastos_proyecto = Gasto.query.all()
+        for gasto in lista_gastos_proyecto:
+            if gasto.proyecto == proyecto_id:
+                db.session.delete(gasto)
         db.session.delete(proyecto)
         db.session.commit()
         #DEBERIA ELIMINAR EL PASO DE MESSAGE?????
