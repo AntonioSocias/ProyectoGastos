@@ -79,4 +79,4 @@ class ProyectoPublishResource(Resource):
         for gasto in lista_gastos:
           if gasto.proyecto == proyecto_id:  
             lista_gastos_proyecto.append(gasto)
-        return {'message': 'Lista de gastos devuelta'}, HTTPStatus.OK
+        return {lista_gastos_proyecto}, HTTPStatus.OK # type: ignore
