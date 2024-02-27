@@ -78,5 +78,5 @@ class ProyectoPublishResource(Resource):
         lista_gastos_proyecto = []
         for gasto in lista_gastos:
           if gasto.proyecto == proyecto_id:  
-            lista_gastos_proyecto.append(gasto)
+            lista_gastos_proyecto.append(gasto.data)
         return lista_gastos_proyecto, HTTPStatus.OK
