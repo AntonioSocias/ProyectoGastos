@@ -56,13 +56,12 @@ class GastoResource(Resource):
         gasto.guardar()
         #AL ACABAR DEVUELVO EL GASTO/QUIZAS NO TENGA QUE HACERLO
         return gasto.data, HTTPStatus.OK
-
-class GastoPublishResource(Resource):
-	def delete(self, gasto_id):
-		gasto = Gasto.get_by_id(gasto_id)
-		if gasto is None:
-			return {'message': 'Gasto no encontrada'}, HTTPStatus.NOT_FOUND
-		db.session.delete(gasto)
-		db.session.commit()
+    #ELIMINA EL GASTO
+    def delete(self, gasto_id):
+        gasto = Gasto.get_by_id(gasto_id)
+        if gasto is None:
+            return {'message': 'Gasto no encontrada'}, HTTPStatus.NOT_FOUND
+        db.session.delete(gasto)
+        db.session.commit()
 		#DEBERIA ELIMINAR EL PASO DE MESSAGE?????
-		return {'message': 'Gasto eliminado'}, HTTPStatus.OK
+        return {'message': 'Gasto eliminado'}, HTTPStatus.OK
