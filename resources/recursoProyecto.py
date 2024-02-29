@@ -2,6 +2,7 @@ from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
 from models.gasto import Gasto
+from models.usuario import Usuario
 from models.proyecto import Proyecto
 from extensiones import db
 #import json OPCION PARA TENER TILDES
@@ -72,7 +73,7 @@ class ProyectoResource(Resource):
         #DEBERIA ELIMINAR EL PASO DE MESSAGE?????
         return {'message': 'Proyecto eliminado'}, HTTPStatus.OK
     
-class ProyectoPublishResource(Resource):
+class ProyectoGastos(Resource):
     #OBTENER GASTOS DEL PROYECTO PASADO
     def get(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
@@ -84,3 +85,16 @@ class ProyectoPublishResource(Resource):
           if gasto.proyecto == proyecto_id:  
             lista_gastos_proyecto.append(gasto.data)
         return lista_gastos_proyecto, HTTPStatus.OK
+    
+class ProyectoUsuarios(Resource):
+    #OBTENER USUARIOS DEL PROYECTO PASADO
+    def get(self, proyecto_id):
+        proyecto = Proyecto.get_by_id(proyecto_id)
+        if proyecto is None:
+             return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+        lista_usuarios = Usuario.query.all()
+        lista_usuarios_proyecto = []
+        for usuario in lista_usuarios:
+          if usuario.proyecto == proyecto_id:  
+            lista_usuarios_proyecto.append(usuario.data)
+        return lista_usuarios_proyecto, HTTPStatus.OK
