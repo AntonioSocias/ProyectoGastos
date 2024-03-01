@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
@@ -21,6 +22,11 @@ class GastoListResource(Resource):
         titulo_gasto = datos.get('titulo')
         if Gasto.get_by_titulo(titulo_gasto):
             return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
+        fecha_str = datos.get('fecha')
+        try:
+            fecha = datetime.strptime(fecha_str, '%Y-%m-%d').date()
+        except ValueError:
+            return {'message': 'Formato de fecha inválido. Debe ser YYYY-MM-DD.'}, HTTPStatus.BAD_REQUEST
 
         gasto = Gasto(
         	#id se genera automáticamente
