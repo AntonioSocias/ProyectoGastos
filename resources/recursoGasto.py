@@ -27,10 +27,10 @@ class GastoListResource(Resource):
             fecha = datetime.strptime(fecha_str, '%Y-%m-%d').date()
         except ValueError:
             return {'message': 'Formato de fecha inválido. Debe ser YYYY-MM-DD.'}, HTTPStatus.BAD_REQUEST
-
+        fechaAdaptada = datos.get('fecha').date()
         gasto = Gasto(
         	#id se genera automáticamente
-            fecha=datos.get('fecha'),
+            fecha=fechaAdaptada,
             pagador=datos.get('pagador'),
             cantidad=datos.get('cantidad'),
             proyecto = datos.get('proyecto'),

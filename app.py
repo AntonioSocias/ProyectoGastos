@@ -32,8 +32,10 @@ def register_resource(app):
     api.add_resource(ProyectoResource, '/proyectos/<int:proyecto_id>')#crea, actualiza y elimina un proyecto 
     api.add_resource(ProyectoGastos, '/proyectos/<int:proyecto_id>/gastos')#devuelve lista de gastos del proyecto
     api.add_resource(ProyectoUsuarios, '/proyectos/<int:proyecto_id>/usuarios')#devuelve lista de usuarios del proyecto 
+
     api.add_resource(GastoListResource, '/gastos')#devuelve una lista de gastos
     api.add_resource(GastoResource, '/gastos/<int:gasto_id>')#crea, actualiza o elimina un gasto
+    
     api.add_resource(UsuarioListResource, '/usuarios')#devuelve una lista de usuarios
     api.add_resource(UsuarioResource, '/usuarios/<int:usuario_id>')#crea, actualiza o elimina un usuario
 app = create_app()
