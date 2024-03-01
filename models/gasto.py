@@ -20,6 +20,10 @@ class Gasto(db.Model):
         return cls.query.filter_by(titulo=titulo).first()
     
     @classmethod
+    def get_by_proyecto(cls, proyecto):
+        return cls.query.filter_by(proyecto=proyecto).first()
+    
+    @classmethod
     def get_by_pagador(cls, pagador):
         return cls.query.filter_by(pagador=pagador).first()
 

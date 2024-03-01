@@ -20,12 +20,12 @@ class GastoListResource(Resource):
     def post(self):
         datos = request.get_json()
         titulo_gasto = datos.get('titulo')
-        if Gasto.get_by_titulo(titulo_gasto):
-            return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
+        proyecto_gasto = datos.get('proyecto')
         
-
+        #adapto la fecha al formato de sqlte3
         fecha_str = datos.get('fecha')
         fecha_datetime = datetime.strptime(fecha_str, "%b %d, %Y %H:%M:%S")
+
 
         gasto = Gasto(
         	#id se genera automáticamente
