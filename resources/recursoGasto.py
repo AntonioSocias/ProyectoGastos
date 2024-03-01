@@ -19,16 +19,18 @@ class GastoListResource(Resource):
     #CREA UN NUEVO GASTO
     def post(self):
         datos = request.get_json()
-        titulo_gasto = datos.get('titulo')
+        gasto = datos.get("gasto")
+        titulo_gasto = gasto.get('titulo')
         if Gasto.get_by_titulo(titulo_gasto):
             return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
+        
         fechaAdaptada = datos.get('fecha').date()
         gasto = Gasto(
         	#id se genera automáticamente
             fecha=fechaAdaptada,
-            pagador=datos.get('pagador'),
-            cantidad=datos.get('cantidad'),
-            proyecto = datos.get('proyecto'),
+            pagador=gasto.get('pagador'),
+            cantidad=gasto.get('cantidad'),
+            proyecto = gasto.get('proyecto'),
             titulo=titulo_gasto
         )
 
