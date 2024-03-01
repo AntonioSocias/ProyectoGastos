@@ -16,9 +16,12 @@ class Gasto(db.Model):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
+    def get_by_titulo(cls, titulo):
+        return cls.query.filter_by(titulo=titulo).first()
+    
+    @classmethod
     def get_by_pagador(cls, pagador):
         return cls.query.filter_by(pagador=pagador).first()
-    
 
     def guardar(self):
         db.session.add(self)
