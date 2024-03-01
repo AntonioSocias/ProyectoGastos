@@ -24,7 +24,8 @@ class GastoListResource(Resource):
             return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
         print(datos.get('fecha'))
 
-        fechaAdaptada = datos.get('fecha').date()
+        fechaAdaptada = datos.get('fecha')
+        print(fechaAdaptada)
 
         gasto = Gasto(
         	#id se genera automáticamente
