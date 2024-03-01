@@ -22,14 +22,13 @@ class GastoListResource(Resource):
         titulo_gasto = datos.get('titulo')
         if Gasto.get_by_titulo(titulo_gasto):
             return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
-        print(datos.get('fecha'))
+        
 
-        fechaAdaptada = datos.get('fecha')
-        print(fechaAdaptada)
-
+        milisegundos = datos.get('fecha').timestamp() * 1000
+        fecha = datetime.fromtimestamp(milisegundos / 1000.0)
         gasto = Gasto(
         	#id se genera automáticamente
-            fecha=fechaAdaptada,
+            fecha=fecha,
             pagador=datos.get('pagador'),
             cantidad=datos.get('cantidad'),
             proyecto = datos.get('proyecto'),
