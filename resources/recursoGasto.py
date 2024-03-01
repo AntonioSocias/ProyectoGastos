@@ -23,12 +23,21 @@ class GastoListResource(Resource):
         if Gasto.get_by_titulo(titulo_gasto):
             return {'message': 'Ya existe un gasto con ese nombre.'}, HTTPStatus.BAD_REQUEST
         
-        print(datos.get('titulo'))
-        print(datos.get('fecha'))
-        #milisegundos = datos.get('fecha').timestamp() * 1000
-        #fecha = datetime.fromtimestamp(milisegundos / 1000.0)
-        
-        return None, HTTPStatus.CREATED
+
+        fecha_str = datos.get('fecha')
+        fecha_datetime = datetime.strptime(fecha_str, "%b %d, %Y %H:%M:%S")
+
+        gasto = Gasto(
+        	#id se genera automáticamente
+            fecha=fecha_datetime,
+            pagador=datos.get('pagador'),
+            cantidad=datos.get('cantidad'),
+            proyecto = datos.get('proyecto'),
+            titulo=titulo_gasto
+        )
+
+        gasto.guardar()
+        return gasto.data, HTTPStatus.CREATED
 
 class GastoResource(Resource):
 	#DEVUELVE UN GASTO
