@@ -24,7 +24,8 @@ class UsuarioListResource(Resource):
 
         usuario = Usuario(
         	#id se genera automáticamente
-            nombre=nombre_usuario
+            nombre=nombre_usuario,
+            password=datos.get('password')
         )
         usuario.guardar()
         return usuario.data, HTTPStatus.CREATED
@@ -44,6 +45,7 @@ class UsuarioResource(Resource):
             return {'message': 'usuario no encontrada'}, HTTPStatus.NOT_FOUND
         datos = request.get_json()
         usuario.nombre = datos.get('nombre')
+        usuario.password = datos.get('password')
         usuario.guardar()
         #AL ACABAR DEVUELVO EL USUARIO/QUIZAS NO TENGA QUE HACERLO
         return usuario.data, HTTPStatus.OK

@@ -5,6 +5,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     proyecto = db.Column(db.Integer, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
     
 
     @classmethod
@@ -29,5 +30,6 @@ class Usuario(db.Model):
         return {
             'id': self.id,
             'nombre': self.nombre,
-            'proyecto' : self.proyecto
+            'proyecto' : self.proyecto,
+            'password' : self.password
         }
