@@ -38,6 +38,8 @@ def register_resource(app):
     
     api.add_resource(UsuarioListResource, '/usuarios')#devuelve una lista de usuarios
     api.add_resource(UsuarioResource, '/usuarios/<int:usuario_id>')#crea, actualiza o elimina un usuario
+
+    
 app = create_app()
 
 #REVISAR QUE HACE ESTO 
