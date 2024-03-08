@@ -4,14 +4,11 @@ from flask_restful import Api
 from config import Config
 from extensiones import db
 
-#IMPORTACIÓN DE MODELOS
-from models.proyecto import Proyecto
-from models.gasto import Gasto
-from models.usuario import Usuario
 
 #IMPORTACIÓN DE RECURSOS
 from resources.recursoProyecto import ProyectoListResource, ProyectoResource, ProyectoGastos, ProyectoUsuarios 
 from resources.recursoGasto import GastoListResource, GastoResource
+from resources.recursoProyectoUsuario import ProyectosUsuariosListResource, ProyectoUsuariosListResource
 from resources.recursoUsuario import UsuarioListResource, UsuarioResource
 
 
@@ -38,6 +35,9 @@ def register_resource(app):
     
     api.add_resource(UsuarioListResource, '/usuarios')#devuelve una lista de usuarios
     api.add_resource(UsuarioResource, '/usuarios/<int:usuario_id>')#crea, actualiza o elimina un usuario
+    
+    api.add_resource(ProyectosUsuariosListResource, '/relacion')#devuelve una lista de las relaciones proyectos y usuarios
+    api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:usuario_id>')#crea, actualiza o elimina una relación de proyectos y usuarios
 
     
 app = create_app()
