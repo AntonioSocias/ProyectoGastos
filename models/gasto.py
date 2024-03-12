@@ -6,12 +6,12 @@ class Gasto(db.Model):
     titulo = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     fecha = db.Column(db.Date, nullable=False)
-    proyecto = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
+    proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
     pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     
     # Relación con la tabla usuarios
-    proyecto = db.relationship('Proyecto', backref='gastos', foreign_keys=[pagador_id])
-    pagador = db.relationship('Usuario', backref='gastos', foreign_keys=[pagador_id])
+    proyecto = db.relationship('Proyecto', backref='proyecto', foreign_keys=[id])
+    pagador = db.relationship('Usuario', backref='gastos', foreign_keys=[id])
 
     @classmethod
     def get_by_id(cls, id):
