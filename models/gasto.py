@@ -24,8 +24,8 @@ class Gasto(db.Model):
         return cls.query.filter_by(titulo=titulo).first()
     
     @classmethod
-    def get_all_by_proyecto(cls, proyecto):
-        return cls.query.filter_by(proyecto=proyecto).all()
+    def get_all_by_proyecto(cls, proyecto_id):
+        return cls.query.filter_by(proyecto_id=proyecto_id).all()  # Corregido para filtrar por proyecto_id en lugar de proyecto
 
     def guardar(self):
         db.session.add(self)
@@ -38,8 +38,7 @@ class Gasto(db.Model):
             'id': self.id,
             'titulo': self.titulo,
             'cantidad': float(self.cantidad),
-            #CONVIERO EL DATE A TEXTO YA QUE JSON NO ADMITE DATE
             'fecha': self.fecha.isoformat(),
-            'proyecto' : self.proyecto,
-            'pagador': self.pagador,           
+            'proyecto_id' : self.proyecto_id,  # Corregido para devolver proyecto_id en lugar de proyecto
+            'pagador_id': self.pagador_id,     # Corregido para devolver pagador_id en lugar de pagador
         }

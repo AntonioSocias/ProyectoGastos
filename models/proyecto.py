@@ -30,8 +30,8 @@ class Proyecto(db.Model):
     def data(self):
         return {
             'id': self.id,
-            'administrador': self.administrador,
-            'moneda': self.moneda,
+            'administrador_id': self.administrador_id,
+            'moneda_id': self.moneda_id,
             'titulo': self.titulo,
             'descripcion': self.descripcion
         }
