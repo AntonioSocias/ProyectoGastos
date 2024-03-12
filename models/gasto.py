@@ -8,12 +8,12 @@ class Gasto(db.Model):
     fecha = db.Column(db.Date, nullable=False)
     proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
     pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    #mjkkl
-    # Relación con la tabla proyectos
-    proyecto = db.relationship('Proyecto', backref='gastos_proyecto', foreign_keys=[proyecto_id])
-
-    # Relación con la tabla usuarios
-    pagador = db.relationship('Usuario', backref='gastos', foreign_keys=[pagador_id])
+    
+    # Relación con la tabla proyectos (se infiere automáticamente)
+    proyecto = db.relationship('Proyecto', backref='gastos_proyecto')
+    
+    # Relación con la tabla usuarios (se infiere automáticamente)
+    pagador = db.relationship('Usuario', backref='gastos')
 
     @classmethod
     def get_by_id(cls, id):
