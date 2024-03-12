@@ -8,7 +8,7 @@ class Gasto(db.Model):
     fecha = db.Column(db.Date, nullable=False)
     proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
     pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    
+    #mjkkl
     # Relación con la tabla proyectos
     proyecto = db.relationship('Proyecto', backref='gastos_proyecto', foreign_keys=[proyecto_id])
 
