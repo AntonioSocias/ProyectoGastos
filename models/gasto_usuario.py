@@ -1,14 +1,14 @@
 from extensiones import db
 
-class ProyectoUsuario(db.Model):
-    __tablename__ = 'proyectos_usuarios'
+class GastoUsuario(db.Model):
+    __tablename__ = 'gastoss_usuarios'
     id = db.Column(db.Integer, primary_key=True)
-    proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
+    gasto_id = db.Column(db.Integer, db.ForeignKey('gastos.id'), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     # Relaciones
-    proyecto_id = db.relationship('Proyecto', backref='usuarios_proyecto')
-    usuario_id = db.relationship('Usuario', backref='proyectos_usuario')
+    gasto_id = db.relationship('Gasto', backref='gastos_usuarios')
+    usuario_id = db.relationship('Usuario', backref='gastos_usuarios')
 
     @classmethod
     def get_by_id(cls, id):
@@ -22,6 +22,6 @@ class ProyectoUsuario(db.Model):
     def data(self):
         return {
             'id': self.id,
-            'proyecto_id': self.proyecto_id,
+            'gasto_id': self.gasto_id,
             'usuario_id': self.usuario_id
         }

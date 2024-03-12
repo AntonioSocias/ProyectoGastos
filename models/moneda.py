@@ -1,11 +1,10 @@
 from extensiones import db
 
-class Usuario(db.Model):
-    __tablename__ = 'usuarios'
+class Moneda(db.Model):
+    __tablename__ = 'monedas'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    
+    simbolo = db.Column(db.String(5), nullable=False)
 
     @classmethod
     def get_by_id(cls, id):
@@ -19,11 +18,10 @@ class Usuario(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
     @property
     def data(self):
         return {
             'id': self.id,
             'nombre': self.nombre,
-            'password' : self.password
+            'simbolo': self.simbolo
         }
