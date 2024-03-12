@@ -5,27 +5,24 @@ from models.gasto import Gasto
 from models.usuario import Usuario
 from models.proyecto import Proyecto
 from extensiones import db
-#import json OPCION PARA TENER TILDES
 
-#PARTE A MODIFICAR
 class ProyectoListResource(Resource):
-	#DEVUELVE LISTA DE PROYECTOS
+    # DEVUELVE LISTA DE PROYECTOS
     def get(self):
-        datos = []
-        proyectos_list = Proyecto.query.all()
-        for proyecto in proyectos_list:
-            datos.append(proyecto.data)
+        proyectos = Proyecto.query.all()
+        datos = [proyecto.data for proyecto in proyectos]
         return datos, HTTPStatus.OK
 
-    #CREA UN NUEVO PROYECTO
+    # CREA UN NUEVO PROYECTO
     def post(self):
         datos = request.get_json()
         titulo_proyecto = datos.get('titulo')
+        
+        # Verificar si ya existe un proyecto con el mismo título
         if Proyecto.get_by_titulo(titulo_proyecto):
             return {'message': 'Ya existe un proyecto con ese nombre.'}, HTTPStatus.BAD_REQUEST
 
         proyecto = Proyecto(
-        	#id se genera automáticamente
             administrador=datos.get('administrador'),
             moneda=datos.get('moneda'),
             total_gastos=datos.get('total_gastos'),
@@ -37,18 +34,18 @@ class ProyectoListResource(Resource):
         return proyecto.data, HTTPStatus.CREATED
 
 class ProyectoResource(Resource):
-	#DEVUELVE UN PROYECTO
+    # DEVUELVE UN PROYECTO
     def get(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
-            return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+            return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
         return proyecto.data, HTTPStatus.OK
 
-    #ACTUALIZA EL PROYECTO
+    # ACTUALIZA EL PROYECTO
     def put(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
-            return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+            return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
         datos = request.get_json()
         proyecto.administrador = datos.get('administrador')
         proyecto.moneda = datos.get('moneda')
@@ -56,45 +53,44 @@ class ProyectoResource(Resource):
         proyecto.titulo = datos.get('titulo')
         proyecto.descripcion = datos.get('descripcion')
         proyecto.guardar()
-        #AL ACABAR DEVUELVO EL PROYECTO/QUIZAS NO TENGA QUE HACERLO
         return proyecto.data, HTTPStatus.OK
     
+    # ELIMINA EL PROYECTO
     def delete(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
-            return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
+            return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
         
-        lista_gastos_proyecto = Gasto.query.all()
+        # Eliminar todos los gastos asociados al proyecto
+        lista_gastos_proyecto = Gasto.query.filter_by(proyecto_id=proyecto_id).all()
         for gasto in lista_gastos_proyecto:
-            if gasto.proyecto == proyecto_id:
-                db.session.delete(gasto)
+            db.session.delete(gasto)
+        
+        # Eliminar el proyecto
         db.session.delete(proyecto)
         db.session.commit()
-        #DEBERIA ELIMINAR EL PASO DE MESSAGE?????
         return {'message': 'Proyecto eliminado'}, HTTPStatus.OK
-    
+
 class ProyectoGastos(Resource):
-    #OBTENER GASTOS DEL PROYECTO PASADO
+    # OBTENER GASTOS DEL PROYECTO
     def get(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
-             return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
-        lista_gastos = Gasto.query.all()
-        lista_gastos_proyecto = []
-        for gasto in lista_gastos:
-          if gasto.proyecto == proyecto_id:  
-            lista_gastos_proyecto.append(gasto.data)
-        return lista_gastos_proyecto, HTTPStatus.OK
-    
+            return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
+        
+        # Obtener todos los gastos asociados al proyecto
+        lista_gastos = Gasto.query.filter_by(proyecto_id=proyecto_id).all()
+        datos = [gasto.data for gasto in lista_gastos]
+        return datos, HTTPStatus.OK
+
 class ProyectoUsuarios(Resource):
-    #OBTENER USUARIOS DEL PROYECTO PASADO
+    # OBTENER USUARIOS DEL PROYECTO
     def get(self, proyecto_id):
         proyecto = Proyecto.get_by_id(proyecto_id)
         if proyecto is None:
-             return {'message': 'Proyecto no encontrada'}, HTTPStatus.NOT_FOUND
-        lista_usuarios = Usuario.query.all()
-        lista_usuarios_proyecto = []
-        for usuario in lista_usuarios:
-          if usuario.proyecto == proyecto_id:  
-            lista_usuarios_proyecto.append(usuario.data)
-        return lista_usuarios_proyecto, HTTPStatus.OK
+            return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
+        
+        # Obtener todos los usuarios asociados al proyecto
+        lista_usuarios = Usuario.query.filter_by(proyecto_id=proyecto_id).all()
+        datos = [usuario.data for usuario in lista_usuarios]
+        return datos, HTTPStatus.OK
