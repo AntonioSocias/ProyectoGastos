@@ -1,7 +1,7 @@
 from extensiones import db
 
 class Moneda(db.Model):
-    __tablename__ = 'Monedas'
+    __tablename__ = 'monedas'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     simbolo = db.Column(db.String(5), nullable=False)

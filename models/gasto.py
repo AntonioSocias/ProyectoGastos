@@ -1,7 +1,7 @@
 from extensiones import db
 
 class Gasto(db.Model):
-    __tablename__ = 'Gastos'
+    __tablename__ = 'gastos'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Numeric(precision=10, scale=2), nullable=False)

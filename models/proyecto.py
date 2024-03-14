@@ -1,10 +1,10 @@
 from extensiones import db
 
 class Proyecto(db.Model):
-    __tablename__ = 'Proyectos'
+    __tablename__ = 'proyectos'
     id = db.Column(db.Integer, primary_key=True)
     administrador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    moneda_id = db.Column(db.Integer, db.ForeignKey('monedas.id'), nullable=False)
+    moneda_id = db.Column(db.Integer, db.ForeignKey('moneda.id'), nullable=False)
     titulo = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.String(255))
     
