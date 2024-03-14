@@ -70,7 +70,7 @@ class Gasto(db.Model):
     pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     
     # Relación con la tabla proyectos (se infiere automáticamente)
-    proyecto = db.relationship('Proyecto', backref='gastos_proyecto')
+    #proyecto = db.relationship('Proyecto', backref='gastos_proyecto')
     
     # Relación con la tabla usuarios (se infiere automáticamente)
     pagador = db.relationship('Usuario', backref='gasto_pagado')
