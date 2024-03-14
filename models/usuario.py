@@ -10,7 +10,7 @@ class Usuario(db.Model):
     proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
     
     # Relación con la tabla gastos (pagador)
-    gastos = db.relationship('Gasto', backref='pagador', foreign_keys='Gasto.pagador_id')
+    #gastos = db.relationship('Gasto', backref='pagador', foreign_keys='Gasto.pagador_id')
     
 
     @classmethod
