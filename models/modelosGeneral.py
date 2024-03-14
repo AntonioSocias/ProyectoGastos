@@ -112,8 +112,8 @@ class Proyecto(db.Model):
     descripcion = db.Column(db.String(255))
     
     # Relaciones
-    administrador_proyecto = db.relationship('Usuario', backref='proyectos_administrados_relacion', foreign_keys=[administrador_id])
-    moneda = db.relationship('Moneda', backref='moneda_proyecto', foreign_keys=[moneda_id])
+    #administrador_proyecto = db.relationship('Usuario', backref='proyectos_administrados_relacion', foreign_keys=[administrador_id])
+    #moneda = db.relationship('Moneda', backref='moneda_proyecto', foreign_keys=[moneda_id])
     
     @classmethod
     def get_by_id(cls, id):
@@ -149,8 +149,8 @@ class GastoUsuario(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     # Relaciones
-    gasto_id = db.relationship('Gasto', backref='gastos_usuarios')
-    usuario_id = db.relationship('Usuario', backref='usuarios_gastos')
+    #gasto_id = db.relationship('Gasto', backref='gastos_usuarios')
+    #usuario_id = db.relationship('Usuario', backref='usuarios_gastos')
 
     @classmethod
     def get_by_id(cls, id):
@@ -175,8 +175,8 @@ class ProyectoUsuario(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     # Relaciones
-    proyecto_id = db.relationship('Proyecto', backref='usuarios_proyecto')
-    usuario_id = db.relationship('Usuario', backref='proyectos_usuario')
+    #proyecto_id = db.relationship('Proyecto', backref='usuarios_proyecto')
+    #usuario_id = db.relationship('Usuario', backref='proyectos_usuario')
 
     @classmethod
     def get_by_id(cls, id):
