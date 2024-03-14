@@ -1,20 +1,16 @@
 from extensiones import db
-from models import moneda, gasto, usuario
 
 class Proyecto(db.Model):
     __tablename__ = 'proyectos'
     id = db.Column(db.Integer, primary_key=True)
     administrador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    moneda_id = db.Column(db.Integer, db.ForeignKey('monedas.id'), nullable=False)
+    moneda_id = db.Column(db.Integer, db.ForeignKey('moneda.id'), nullable=False)
     titulo = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.String(255))
-    fecha = db.Column(db.Date, nullable=False)
     
-    # Relación con la tabla usuarios (administrador)
+    # Relaciones
     administrador = db.relationship('Usuario', backref='proyectos_administrados', foreign_keys=[administrador_id])
-    
-    # Relación con la tabla monedas
-    moneda = db.relationship('Moneda', backref='proyectos')
+    moneda = db.relationship('Moneda', backref='proyectos', foreign_keys=[moneda_id])
     
     @classmethod
     def get_by_id(cls, id):
@@ -34,8 +30,8 @@ class Proyecto(db.Model):
     def data(self):
         return {
             'id': self.id,
-            'administrador': self.administrador,
-            'moneda': self.moneda,
+            'administrador_id': self.administrador_id,
+            'moneda_id': self.moneda_id,
             'titulo': self.titulo,
             'descripcion': self.descripcion
         }

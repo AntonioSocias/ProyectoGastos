@@ -1,7 +1,7 @@
 from extensiones import db
-"""
+
 class ProyectoUsuario(db.Model):
-    __tablename__ = 'proyectos_usuarios'
+    __tablename__ = 'ProyectosUsuarios'
     id = db.Column(db.Integer, primary_key=True)
     proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
@@ -25,4 +25,3 @@ class ProyectoUsuario(db.Model):
             'proyecto_id': self.proyecto_id,
             'usuario_id': self.usuario_id
         }
-"""
