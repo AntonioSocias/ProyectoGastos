@@ -6,6 +6,12 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     
+    # Relación con la tabla proyectos (administrador)
+    proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
+    
+    # Relación con la tabla gastos (pagador)
+    gastos = db.relationship('Gasto', backref='pagador', foreign_keys='Gasto.pagador_id')
+    
 
     @classmethod
     def get_by_id(cls, id):
