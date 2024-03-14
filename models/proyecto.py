@@ -10,7 +10,7 @@ class Proyecto(db.Model):
     
     # Relaciones
     administrador = db.relationship('Usuario', backref='administrador_proyecto', foreign_keys=[administrador_id])
-    moneda = db.relationship('Moneda', backref='proyectos', foreign_keys=[moneda_id])
+    moneda = db.relationship('Moneda', backref='moneda_proyecto', foreign_keys=[moneda_id])
     
     @classmethod
     def get_by_id(cls, id):
