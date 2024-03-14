@@ -4,10 +4,17 @@ from models import moneda, gasto, usuario
 class Proyecto(db.Model):
     __tablename__ = 'proyectos'
     id = db.Column(db.Integer, primary_key=True)
-    administrador = db.relationship('Usuario', backref='proyecto')
-    moneda = db.relationship('Moneda', backref='proyecto')
     titulo = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.String(255))
+    fecha = db.Column(db.Date, nullable=False)
+    
+    # Relación con la tabla usuarios (administrador)
+    administrador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    administrador = db.relationship('Usuario', backref='proyectos_administrados')
+    
+    # Relación con la tabla monedas
+    moneda_id = db.Column(db.Integer, db.ForeignKey('monedas.id'), nullable=False)
+    moneda = db.relationship('Moneda', backref='proyectos')
     
     @classmethod
     def get_by_id(cls, id):
