@@ -1,5 +1,5 @@
 from extensiones import db
-
+"""
 class ProyectoUsuario(db.Model):
     __tablename__ = 'proyectos_usuarios'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +25,4 @@ class ProyectoUsuario(db.Model):
             'proyecto_id': self.proyecto_id,
             'usuario_id': self.usuario_id
         }
+"""

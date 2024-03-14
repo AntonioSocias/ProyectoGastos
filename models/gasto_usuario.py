@@ -1,5 +1,5 @@
 from extensiones import db
-
+"""
 class GastoUsuario(db.Model):
     __tablename__ = 'gastoss_usuarios'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +25,4 @@ class GastoUsuario(db.Model):
             'gasto_id': self.gasto_id,
             'usuario_id': self.usuario_id
         }
+"""
