@@ -13,7 +13,7 @@ class Gasto(db.Model):
     proyecto = db.relationship('Proyecto', backref='gastos_proyecto')
     
     # Relación con la tabla usuarios (se infiere automáticamente)
-    pagador = db.relationship('Usuario', backref='gastos')
+    #pagador = db.relationship('Usuario', backref='gastos')
 
     @classmethod
     def get_by_id(cls, id):
