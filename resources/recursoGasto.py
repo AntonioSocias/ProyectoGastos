@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
-from models.gasto import Gasto
+from models.modelosGeneral import Gasto
 from extensiones import db
 
 class GastoListResource(Resource):

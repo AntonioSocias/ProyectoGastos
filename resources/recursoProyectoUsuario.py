@@ -2,10 +2,10 @@ from ast import For
 from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
-#from models.proyecto_usuario import ProyectoUsuario
+from models.modelosGeneral import ProyectoUsuario
 from extensiones import db
 #import json OPCION PARA TENER TILDES
-"""
+
 #PARTE A MODIFICAR
 class ProyectosUsuariosListResource(Resource):
 	#DEVUELVE LISTA DE Proyectos Usuarios
@@ -70,4 +70,3 @@ class ProyectoUsuariosListResource(Resource):
         db.session.commit()
 		#DEBERIA ELIMINAR EL PASO DE MESSAGE?????
         return {'message': 'Relación eliminada'}, HTTPStatus.OK
-"""

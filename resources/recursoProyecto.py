@@ -1,9 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
-from models.gasto import Gasto
-from models.usuario import Usuario
-from models.proyecto import Proyecto
+from models.modelosGeneral import Gasto, Usuario, Proyecto
 from extensiones import db
 
 class ProyectoListResource(Resource):

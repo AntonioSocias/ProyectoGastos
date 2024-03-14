@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from http import HTTPStatus
-from models.usuario import Usuario
+from models.modelosGeneral import Usuario
 from extensiones import db
 
 class UsuarioListResource(Resource):
