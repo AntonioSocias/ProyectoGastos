@@ -9,7 +9,7 @@ class Proyecto(db.Model):
     descripcion = db.Column(db.String(255))
     
     # Relaciones
-    administrador = db.relationship('Usuario', backref='proyectos_administrados', foreign_keys=[administrador_id])
+    administrador = db.relationship('Usuario', backref='administrador_proyecto', foreign_keys=[administrador_id])
     moneda = db.relationship('Moneda', backref='proyectos', foreign_keys=[moneda_id])
     
     @classmethod
