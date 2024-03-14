@@ -15,7 +15,6 @@ class Proyecto(db.Model):
     
     # Relación con la tabla monedas
     moneda = db.relationship('Moneda', backref='proyectos')
-
     
     @classmethod
     def get_by_id(cls, id):
