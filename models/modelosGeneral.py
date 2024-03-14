@@ -1,7 +1,7 @@
 from extensiones import db
 
 class Moneda(db.Model):
-    __tablename__ = 'monedas'
+    __tablename__ = 'Monedas'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     simbolo = db.Column(db.String(5), nullable=False)
@@ -27,7 +27,7 @@ class Moneda(db.Model):
         }
 
 class Usuario(db.Model):
-    __tablename__ = 'usuarios'
+    __tablename__ = 'Usuarios'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
@@ -61,7 +61,7 @@ class Usuario(db.Model):
         }
 
 class Gasto(db.Model):
-    __tablename__ = 'gastos'
+    __tablename__ = 'Gastos'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
@@ -104,7 +104,7 @@ class Gasto(db.Model):
         }
     
 class Proyecto(db.Model):
-    __tablename__ = 'proyectos'
+    __tablename__ = 'Proyectos'
     id = db.Column(db.Integer, primary_key=True)
     administrador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     moneda_id = db.Column(db.Integer, db.ForeignKey('moneda.id'), nullable=False)
