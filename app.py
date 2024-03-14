@@ -8,7 +8,7 @@ from extensiones import db
 #IMPORTACIÓN DE RECURSOS
 from resources.recursoProyecto import ProyectoListResource, ProyectoResource, ProyectoGastos, ProyectoUsuarios 
 from resources.recursoGasto import GastoListResource, GastoResource
-from resources.recursoProyectoUsuario import ProyectosUsuariosListResource, ProyectoUsuariosListResource
+#from resources.recursoProyectoUsuario import ProyectosUsuariosListResource, ProyectoUsuariosListResource
 from resources.recursoUsuario import UsuarioListResource, UsuarioResource
 
 
