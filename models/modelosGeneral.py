@@ -33,10 +33,10 @@ class Usuario(db.Model):
     password = db.Column(db.String(100), nullable=False)
     
     # Relación con la tabla proyectos (administrador)
-    #proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
+    proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
     
     # Relación con la tabla gastos (pagador)
-    #gastos_participados = db.relationship('Gasto', backref='pagador_usuarios', foreign_keys='Gasto.pagador_id')
+    gastos_participados = db.relationship('Gasto', backref='pagador', foreign_keys='Gasto.pagador_id')
     
 
     @classmethod
@@ -66,8 +66,8 @@ class Gasto(db.Model):
     titulo = db.Column(db.String(100), nullable=False)
     cantidad = db.Column(db.Numeric(precision=10, scale=2), nullable=False)
     fecha = db.Column(db.Date, nullable=False)
-    proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
-    pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    proyecto_id = db.Column(db.Integer, db.ForeignKey('Proyectos.id'), nullable=False)
+    pagador_id = db.Column(db.Integer, db.ForeignKey('Usuarios.id'), nullable=False)
     
     # Relación con la tabla proyectos (se infiere automáticamente)
     proyecto = db.relationship('Proyecto', backref='gastos')
@@ -106,8 +106,8 @@ class Gasto(db.Model):
 class Proyecto(db.Model):
     __tablename__ = 'Proyectos'
     id = db.Column(db.Integer, primary_key=True)
-    administrador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    moneda_id = db.Column(db.Integer, db.ForeignKey('moneda.id'), nullable=False)
+    administrador_id = db.Column(db.Integer, db.ForeignKey('Usuarios.id'), nullable=False)
+    moneda_id = db.Column(db.Integer, db.ForeignKey('Monedas.id'), nullable=False)
     titulo = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.String(255))
     
@@ -145,8 +145,8 @@ TABLAS DE RELACIONES
 class GastoUsuario(db.Model):
     __tablename__ = 'GastosUsuarios'
     id = db.Column(db.Integer, primary_key=True)
-    gasto_id = db.Column(db.Integer, db.ForeignKey('gastos.id'), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    gasto_id = db.Column(db.Integer, db.ForeignKey('Gastos.id'), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('Usuarios.id'), nullable=False)
 
     # Relaciones
     gasto = db.relationship('Gasto', backref='usuarios_gastos')
@@ -171,8 +171,8 @@ class GastoUsuario(db.Model):
 class ProyectoUsuario(db.Model):
     __tablename__ = 'ProyectosUsuarios'
     id = db.Column(db.Integer, primary_key=True)
-    proyecto_id = db.Column(db.Integer, db.ForeignKey('proyectos.id'), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    proyecto_id = db.Column(db.Integer, db.ForeignKey('Proyectos.id'), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('Usuarios.id'), nullable=False)
 
     # Relaciones
     proyecto = db.relationship('Proyecto', backref='usuarios_proyecto')
