@@ -21,9 +21,8 @@ class ProyectoListResource(Resource):
             return {'message': 'Ya existe un proyecto con ese nombre.'}, HTTPStatus.BAD_REQUEST
 
         proyecto = Proyecto(
-            administrador=datos.get('administrador'),
-            moneda=datos.get('moneda'),
-            total_gastos=datos.get('total_gastos'),
+            administrador=datos.get('administrador_id'),
+            moneda=datos.get('moneda_id'),
             titulo=titulo_proyecto,
             descripcion=datos.get('descripcion')
         )
@@ -45,9 +44,8 @@ class ProyectoResource(Resource):
         if proyecto is None:
             return {'message': 'Proyecto no encontrado'}, HTTPStatus.NOT_FOUND
         datos = request.get_json()
-        proyecto.administrador = datos.get('administrador')
-        proyecto.moneda = datos.get('moneda')
-        proyecto.total_gastos = datos.get('total_gastos')
+        proyecto.administrador = datos.get('administrador_id')
+        proyecto.moneda = datos.get('moneda_id')
         proyecto.titulo = datos.get('titulo')
         proyecto.descripcion = datos.get('descripcion')
         proyecto.guardar()

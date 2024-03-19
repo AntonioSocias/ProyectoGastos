@@ -7,10 +7,10 @@ class Usuario(db.Model):
     password = db.Column(db.String(100), nullable=False)
     
     # Relación con la tabla proyectos (administrador)
-    proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
+    #proyectos_administrados = db.relationship('Proyecto', backref='administrador', foreign_keys='Proyecto.administrador_id')
     
     # Relación con la tabla gastos (pagador)
-    gastos_participados = db.relationship('Gasto', backref='pagador_usuarios', foreign_keys='Gasto.pagador_id')
+    #gastos_participados = db.relationship('Gasto', backref='pagador_usuarios', foreign_keys='Gasto.pagador_id')
     
 
     @classmethod
