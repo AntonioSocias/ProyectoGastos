@@ -70,10 +70,10 @@ class Gasto(db.Model):
     pagador_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     
     # Relación con la tabla proyectos (se infiere automáticamente)
-    #proyecto = db.relationship('Proyecto', backref='gastos_proyecto')
+    proyecto = db.relationship('Proyecto', backref='gastos')
     
     # Relación con la tabla usuarios (se infiere automáticamente)
-    #pagador = db.relationship('Usuario', backref='gasto_pagado')
+    pagador = db.relationship('Usuario', backref='gastos_pagado')
 
     @classmethod
     def get_by_id(cls, id):
@@ -112,8 +112,8 @@ class Proyecto(db.Model):
     descripcion = db.Column(db.String(255))
     
     # Relaciones
-    #administrador_proyecto = db.relationship('Usuario', backref='proyectos_administrados_relacion', foreign_keys=[administrador_id])
-    #moneda = db.relationship('Moneda', backref='moneda_proyecto', foreign_keys=[moneda_id])
+    administrador_proyecto = db.relationship('Usuario', backref='proyectos_administrados')
+    moneda = db.relationship('Moneda', backref='proyectos')
     
     @classmethod
     def get_by_id(cls, id):
@@ -149,8 +149,8 @@ class GastoUsuario(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     # Relaciones
-    #gasto_id = db.relationship('Gasto', backref='gastos_usuarios')
-    #usuario_id = db.relationship('Usuario', backref='usuarios_gastos')
+    gasto = db.relationship('Gasto', backref='usuarios_gastos')
+    usuario = db.relationship('Usuario', backref='gastos_usuarios')
 
     @classmethod
     def get_by_id(cls, id):
@@ -175,8 +175,8 @@ class ProyectoUsuario(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     # Relaciones
-    #proyecto_id = db.relationship('Proyecto', backref='usuarios_proyecto')
-    #usuario_id = db.relationship('Usuario', backref='proyectos_usuario')
+    proyecto = db.relationship('Proyecto', backref='usuarios_proyecto')
+    usuario = db.relationship('Usuario', backref='proyectos_usuario')
 
     @classmethod
     def get_by_id(cls, id):
