@@ -14,8 +14,6 @@ class ParteListResource(Resource):
     # CREA UN NUEVO PARTE
     def post(self):
         datos = request.get_json()
-        nombre_usuario = datos.get('nombre')
-
         parte = Parte(
             apartamento=datos.get('apartamento'),
             operador = datos.get('operador'),
