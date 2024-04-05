@@ -10,6 +10,7 @@ from resources.recursoProyecto import ProyectoListResource, ProyectoResource, Pr
 from resources.recursoGasto import GastoListResource, GastoResource
 from resources.recursoProyectoUsuario import ProyectosUsuariosListResource, ProyectoUsuariosListResource
 from resources.recursoUsuario import UsuarioListResource, UsuarioResource
+from resources.recursoParte import ParteListResource, ParteResource 
 
 
 def create_app():
@@ -38,6 +39,9 @@ def register_resource(app):
     
     api.add_resource(ProyectosUsuariosListResource, '/relacion')##GET - devuelve una lista de relaciones Proyectos_usuarios POST - crea una nueva relación
     api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:proyecto_id>')#actualiza o elimina una relación de proyectos y usuarios
+
+    api.add_resource(ParteListResource, '/partes')#devuelve una lista de partes
+    api.add_resource(ParteResource, '/partes/<int:parte_id>')#actualiza o elimina un parte
 
     
 app = create_app()
