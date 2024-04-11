@@ -37,11 +37,11 @@ def register_resource(app):
     api.add_resource(UsuarioListResource, '/usuarios')#devuelve una lista de usuarios
     api.add_resource(UsuarioResource, '/usuarios/<int:usuario_id>')#actualiza o elimina un usuario
     
-    api.add_resource(ProyectosUsuariosListResource, '/relacion')##GET - devuelve una lista de relaciones Proyectos_usuarios POST - crea una nueva relación
-    api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:proyecto_id>')#actualiza o elimina una relación de proyectos y usuarios
-
     api.add_resource(ParteListResource, '/partes')#devuelve una lista de partes
     api.add_resource(ParteResource, '/partes/<int:parte_id>')#actualiza o elimina un parte
+    
+    api.add_resource(ProyectosUsuariosListResource, '/relacion')##GET - devuelve una lista de relaciones Proyectos_usuarios POST - crea una nueva relación
+    api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:proyecto_id>')#actualiza o elimina una relación de proyectos y usuarios
 
     
 app = create_app()
