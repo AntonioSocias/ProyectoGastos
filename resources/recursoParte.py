@@ -40,11 +40,11 @@ class ParteResource(Resource):
             return {'message': 'Parte no encontrado'}, HTTPStatus.NOT_FOUND
         
         datos = request.get_json()
-        parte.apartamento=datos.get('apartamento'),
-        parte.operador = datos.get('operador'),
-        parte.prioridad = datos.get('prioridad'),
-        parte.fecha = datos.get('fecha'),
-        parte.descripcion = datos.get('descripcion'),
+        parte.apartamento=datos.get('apartamento')
+        parte.operador = datos.get('operador')
+        parte.prioridad = datos.get('prioridad')
+        parte.fecha = datos.get('fecha')
+        parte.descripcion = datos.get('descripcion')
         parte.foto = datos.get('foto')
         parte.guardar()
         
