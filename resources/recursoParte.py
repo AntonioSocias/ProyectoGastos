@@ -7,10 +7,10 @@ from extensiones import db
 class ParteListResource(Resource):
     # DEVUELVE LISTA DE PARTES
     def get(self):
-        #partes = Parte.query.all()
-        #datos = [parte.data for parte in partes]
-        #return datos, HTTPStatus.OK
-        return "metodo get"
+        partes = Parte.query.all()
+        datos = [parte.data for parte in partes]
+        return datos, HTTPStatus.OK
+        
 
     # CREA UN NUEVO PARTE
     def post(self):
