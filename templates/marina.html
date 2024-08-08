@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Regalo Virtual</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Cielo con la imagen de Van Gogh -->
+    <a-sky src="{{ url_for('static', filename='tus_imagenes/starry_night.jpg') }}"></a-sky>
+
+    <!-- Mensajes en diferentes posiciones -->
+    <a-text value="Mensaje 1" position="2 1.5 -3" color="#FFFFFF"></a-text>
+    <a-text value="Mensaje 2" position="-2 2 -4" color="#FFFFFF"></a-text>
+    <a-text value="Mensaje 3" position="0 3 -5" color="#FFFFFF"></a-text>
+
+    <!-- Control de cámara con movimiento del dispositivo -->
+    <a-camera look-controls="enabled: true"></a-camera>
+  </a-scene>
+</body>
+</html>

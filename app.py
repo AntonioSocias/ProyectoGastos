@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_restful import Api
 from config import Config
@@ -43,7 +43,11 @@ def register_resource(app):
     api.add_resource(ProyectosUsuariosListResource, '/relacion')##GET - devuelve una lista de relaciones Proyectos_usuarios POST - crea una nueva relación
     api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:proyecto_id>')#actualiza o elimina una relación de proyectos y usuarios
 
-    
+def register_routes(app):
+    @app.route('/')
+    def index():
+        return render_template('marina.html')
+
 app = create_app()
 
 #REVISAR QUE HACE ESTO 
