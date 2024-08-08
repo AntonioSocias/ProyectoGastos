@@ -50,9 +50,6 @@ def register_routes(app):
         return render_template('marina.html')
 
 
-app = create_app()
-
-#REVISAR QUE HACE ESTO 
-@app.shell_context_processor
-def make_shell_context():
-    return dict(db=db, Receta=Receta)
+if __name__ == '__main__':
+    app = create_app()
+    app.run(host='0.0.0.0', port=5000)
