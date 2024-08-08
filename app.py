@@ -44,7 +44,7 @@ def register_resource(app):
     api.add_resource(ProyectoUsuariosListResource, '/relacion/<int:proyecto_id>')#actualiza o elimina una relación de proyectos y usuarios
 
 def register_routes(app):
-    @app.route('/')
+    @app.route('/marina')
     def index():
         return render_template('marina.html')
 
